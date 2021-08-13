@@ -55,7 +55,7 @@ function handleSignedInUser(user) {
     if (user.photoURL) {
         $(".avatar").attr("src",user.photoURL);
     } else {
-        $(".avatar").attr("src","/images/user.svg");
+        $(".avatar").attr("src","/images/user.jpg");
     }
     $('#modal-login').modal('hide');
 }
