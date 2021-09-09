@@ -1,4 +1,3 @@
-
 package controller;
 
 import com.mongodb.client.FindIterable;
@@ -17,7 +16,7 @@ public class MovieController extends MyController {
     public void process(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext, ITemplateEngine templateEngine) throws Exception {
         super.process(request, response, servletContext, templateEngine);
         String id = request.getParameter("id");
-        Movie movie = new MovieService().getMovieByID(id);
+        Movie movie = new MovieService(movieDAO).getMovieByID(id);
         ctx.setVariable("movie", movie);
 
         ctx.setVariable("url", "movie?id=" + id);
