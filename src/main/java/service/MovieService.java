@@ -1,10 +1,17 @@
 package service;
 
 import DAO.IMovieDAO;
+import DAO.MongoDB.MovieDAO;
 import model.Movie;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import java.util.*;
 
+@Path("/movie")
 public class MovieService {
 
     IMovieDAO movieDAO;
@@ -13,11 +20,15 @@ public class MovieService {
         this.movieDAO = movieDAO;
     }
 
-    public Movie getMovieByID(String id) {
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public Movie getMovieByID(@QueryParam("id") String id) {
         Movie movie = movieDAO.getMovieByID(id);
         return movie;
     }
-
+    public MovieService(){
+        this.movieDAO = new MovieDAO();
+    }
     final static int NUM_OF_MOVIE_ON_PAGE = 12;
 
     public List<Movie> searchMovies(String by, String value, int page, String text) {
